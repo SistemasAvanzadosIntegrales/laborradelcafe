@@ -1,0 +1,322 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+p, a, h1, h2, h3, h4, form {
+	font-weight: normal;
+}
+
+.imgCatego2 {
+	width: 100%;
+	overflow: hidden;
+	background-size: 100%;
+	margin: .5em 0 0;
+	cursor: pointer;
+}
+
+.imgCatego2 img {
+    width:100%;
+}
+
+a {
+    color:#DDDDDD;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+	cursor: pointer;
+	color: #08346B;
+}
+
+/**
+ * Roberto
+ **/
+
+body,
+.page-wrapper {
+    font-family: 'Roboto' !important;
+}
+
+.page-wrapper {
+    padding: 1rem 1rem 2rem;
+    float: left;
+    width: 100%;
+    z-index: 0;
+}
+
+.btn-primary {
+    font-size: 20px;
+    border-radius: 40px;
+    background: #DF0209; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #DF0209 , #E43E2D); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #DF0209, #E43E2D); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #DF0209, #E43E2D); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #DF0209, #E43E2D); /* Standard syntax */
+    border: none;
+    padding: 0.75rem 1rem;
+}
+
+.btn-primary:hover {
+    font-size: 20px;
+    border-radius: 40px;
+    background: #DF0209; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #DF0209 , #E43E2D); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #DF0209, #E43E2D); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #DF0209, #E43E2D); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #DF0209, #E43E2D); /* Standard syntax */
+    border: none;
+    padding: 0.75rem 1rem;
+}
+
+.m-t-space {
+    margin-top: 8%;
+    z-index: 0;
+}
+
+.m-t-space_x2 {
+    margin-top: 18%;
+    z-index: 0;
+}
+
+.m-t-space_x25 {
+    margin-top: 23%;
+    z-index: 0;
+}
+
+.m-t-space_x3 {
+    margin-top: 28%;
+    z-index: 0;
+}
+
+.form-control {
+    border-radius: 25px;
+    font-size: 22px;
+    padding: 1rem 0.75rem;
+    border-color: #20100F;
+    height: auto !important;
+}
+
+a:hover, 
+a:focus {
+    color: #fff;
+}
+
+button, 
+input, 
+optgroup, 
+select, 
+textarea {
+    font-family: roboto;
+}
+
+p {
+    color: #acacac;
+    font-size: 25px;
+    line-height: 24px;
+    font-family: Roboto;
+}
+
+p.active {
+    box-shadow: -5px 6px 10px -2px #DF0209;
+}
+
+p.option {
+    font-size: 20px;
+    padding: 0.5rem;
+    border-radius: 30px;
+}
+
+p.option:hover {
+    background: #DF0209;
+    color: #fff !important;
+    border-radius: 30px;
+}
+
+.active {
+    color: #DF0209 !important;
+}
+
+#frmRegistro .form-control {
+    padding: 1rem 0.75rem 1rem 2.5rem;
+}
+
+.form-control.padding {
+    padding: 0.75rem 3rem;
+}
+
+.form-control:focus {
+    border-color: #DF0209 !important
+}
+
+.fixed {
+    position: fixed;
+    width: auto;
+    z-index: 999999;
+    margin-left: 2rem;
+    cursor: pointer;
+    display: block;
+}
+
+h1 {
+    font-size: 45px !important;
+}
+
+#light p,
+#light2 p {
+    color: #1E130B;
+    font-size: 27px;
+}
+
+#light .btn-primary,
+#light2 .btn-primary {
+    padding: 0.75rem 0;
+}
+
+#light.modal {
+    top: 15%;
+    left: 5%;
+    width: 90%;
+    height: auto;
+    padding: 1rem;
+    overflow: hidden;
+    border-radius: 20px;
+    bottom: inherit;
+}
+
+#light2.modal2 {
+    left: 5%;
+    width: 90%;
+    height: auto;
+    padding: 1rem;
+    border-radius: 20px;
+    top: 10%;
+}
+
+#light2 .codigo-qr {
+    font-size: 15px;
+    color: #DF0209;
+}
+
+.no-pt {
+    padding-top: 0 !important;
+}
+
+.no-pl {
+    padding-left: 0 !important;
+}
+
+.no-pr {
+    padding-right: 0 !important;
+}
+
+.no-mt {
+    margin-top: 0 !important;
+}
+
+.float-left {
+    float: left !important;
+}
+
+#contenedorPromociones img {
+    cursor: pointer;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+#acercaDe h2 {
+    font-size: 1.5rem;
+}
+
+#acercaDe p {
+    color: inherit;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: Roboto;
+}
+
+#back {
+    position: absolute;
+    left: 0;
+    top: 125%;
+}
+
+.img-circle {
+    cursor: pointer;
+    width: 90%;
+}
+
+.logo-right {
+    position: absolute;
+    right: 0;
+    top: -1rem;
+}
+
+label {
+    display: initial;
+    margin-bottom: 0;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+#userLocation {
+    font-size: 17px;
+    line-height: 10px;
+}
+
+#circle-red {
+    border: 4px solid #DF0209;
+    border-radius: 400px;
+    height: 240px;
+    padding: 0px;
+}
+
+#circle-red .circle-red-into {
+    border: 10px solid #fff;
+    background: #DF0209;
+    height: 232px;
+    border-radius: 400px;
+}
+
+#circle-red .circle-red-into div {
+    position: relative;
+    top: 45%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+#circle-red .circle-red-into #lblPuntos {
+    font-size: 60px;
+    line-height: 47px;
+    font-weight: normal;
+}
+
+table th, 
+table td {
+    font-size: 12px;
+    padding: 0.5rem !important;;
+    text-align: center;
+    border: 0 !important;
+}
+
+.privacity p {
+    font-size: 15px !important;
+}
+
+.privacity h2 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#politicas {
+    cursor: pointer;
+}

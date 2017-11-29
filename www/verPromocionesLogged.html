@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+            @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+            @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+        </style>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="css/bootstrap.css" >
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/menu.css" />
+        <link rel="stylesheet" href="css/font-awesome.css">
+               
+        <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls, added during build -->
+        <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+        <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    </head>
+    
+    <body onclick="afuera();">
+        
+        <!-- opacity -->
+        <div class="col-12 float-left modal-background hidden"></div>
+        
+        <!-- Menú -->
+        <header id="menu"></header>
+        
+        <div class="page-wrapper">
+            <div class="row">
+                <!-- Logo Menu -->
+                <div class="col-12 text-left float-left no-padding">
+                    <a href="#" class="fixed">
+                        <img src="img/menu.png" id="menus" width="35px">  
+                    </a>
+                </div>
+                
+                <!-- Logo principal -->
+                <div class="offset-3 col-6 text-center m-t-space">
+                    <img src="img/logo-middle.png" width="100%">
+                </div>
+                
+                <!-- Titulos -->
+                <div class="col-12 text-center mt-4">
+                    <h1>"Promociones"</h1>
+                    <p class="mt-3">Déjate inspirar</p>
+                </div>
+                
+                <div class="col-6 text-center mt-4">
+                    <a href="#">
+                        <p class="option active">Promociones cerca de mi</p>
+                    </a>
+                </div>
+                
+                <div class="col-6 text-center mt-4">
+                    <a href="verPromocionesLoggedAll.html">
+                        <p class="option">Todas las Promociones</p>
+                    </a>
+                </div>
+
+                <!-- Google Maps -->
+                <div class="col-12 text-center mt-4" id="googleMap" style="height: 250px;"></div>
+                
+                <!-- Imagenes -->
+                <div class="col-12 text-center mt-4" id="contenedorPromociones"></div>
+                
+                <!-- Overlay -->
+                <div id="fade" class="overlay" onclick= "document.getElementById('light').style.display='none'; document.getElementById('fade').style.display='none'"></div>
+                
+                <!-- ventana modal -->  
+                <div id="light" class="modal text-center">
+                    <p class="mt-2">¿Quieres utilizar este cupón?</p>
+                    
+                    <!-- Buttons -->
+                    <div class="col-6 mt-3 float-left no-pl">
+                        <a href="#" onclick="cerrar_modal();" class="btn btn-primary btn-block">
+                            Regresar
+                        </a>
+                    </div>
+                    <div class="col-6 float-left mt-3 no-pr">
+                        <a href="#" onclick="modal2();"  class="btn btn-primary btn-block">
+                            Aceptar
+                        </a>
+                    </div>
+                </div>
+    
+                <div id="fade2" class="overlay" onclick= "document.getElementById('light2').style.display='none'; document.getElementById('fade').style.display='none'"></div>
+ 
+                <!-- ventana modal -->  
+                <div id="light2" class="modal2 text-center">
+                    <p class="mt-2">¡Operación exitosa!</p>
+                       
+                    <label id="msg2" class="codigo-qr"></label>
+                       
+                    <div id="qr"></div>
+                      
+                    <p>Haz válido el cupón presentando el siguiente código "QR" en tu sucursal favorita.</p>
+                    
+                    <div class="offset-3 col-6 text-center mt-4">         
+                        <a href="#" onclick="aceptar();" class="btn btn-primary btn-block ">Aceptar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--JS--> 
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script> 
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/localstorage.js"></script>
+        <script type="text/javascript" src="js/qrcode.js"></script>
+        <script type="text/javascript" src="js/comun.js"></script>
+        <script type="text/javascript" src="js/verPromociones.js"></script>
+        <script type="text/javascript" src="js/menu.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                mostrarCupones();
+            });
+            
+            document.addEventListener("deviceready", function(){
+                
+                $.ajax({
+                    url: ruta_generica,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data:{
+                        funcion   : 'dameSucursales',
+                        idCliente : cliente
+                    },
+                    success:function(resp) {
+                    
+                        console.log(resp);
+                        
+                        if(resp[0].error == '') {
+                            dibujaMapa(resp);
+                        }
+                        else {
+                            $("#alertaLogin").html(resp.error).show();
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                        console.log("Status: " + textStatus); 
+                        console.log("Error: " + errorThrown); 
+                    }
+                });
+            }, false);
+            
+            var pointMarker = new Array();  //store marker in array
+            var Destinos    = new Array();  //store positions in array
+            
+            function dibujaMapa(sucu) {
+                
+                navigator.geolocation.getCurrentPosition(function(position){
+                    
+                    //console.log(position);
+                    
+                    var MiPosicion = position.coords.latitude+","+position.coords.longitude;
+                    
+                    var mapProp = {
+                        center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+                        zoom:13, mapTypeId:google.maps.MapTypeId.ROADMAP
+                    };
+                    
+                    var map    = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                    var marker = new google.maps.Marker({
+                        position:new google.maps.LatLng(position.coords.latitude,position.coords.longitude)
+                    });
+                    
+                    marker.setMap(map);
+                    
+                    for( var i = 0; i <= sucu.length - 1; i++ ) {
+                        
+                        var latit = parseFloat(sucu[i].latitud).toFixed(6);
+                        var longi = parseFloat(sucu[i].longitud).toFixed(6);
+                        
+                        if( !isNaN(latit) && !isNaN(longi) && sucu[i].nombre != '' && sucu[i].nombre != null ) {
+                            
+                            miSucursal  = new google.maps.LatLng(latit, longi);
+                            Destinos[i] = latit+","+longi;
+                            
+                            pointMarker[i] = new google.maps.Marker({
+                                position: miSucursal,
+                                map: map,
+                                animation: google.maps.Animation.BOUNCE,
+                                title: sucu[i].nombre
+                            });
+                            
+                            attachSecretMessage(pointMarker[i], sucu[i].nombre);
+                        }//if
+                    }//for
+                }, function(error){
+                    alert("Ve a configuración y activa tu GPS/ubicación");
+                    if(error.code == PositionError.PERMISSION_DENIED)
+                    {
+                        alert("App doesn't have permission to use GPS");
+                    }
+                    else if(error.code == PositionError.POSITION_UNAVAILABLE)
+                    {
+                        alert("No GPS device found");
+                    }
+                    else if(error.code == PositionError.TIMEOUT)
+                    {
+                        alert("Its taking too long find user location");
+                    }
+                    else
+                    {
+                        alert("An unknown error occured");
+                    }
+                }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+            }//function
+            
+            // Attaches an info window to a marker with the provided message. When the
+            // marker is clicked, the info window will open with the secret message.
+            function attachSecretMessage(marker, secretMessage) {
+                var infowindow = new google.maps.InfoWindow({
+                    content: secretMessage
+                });
+
+                marker.addListener('click', function() {
+                    infowindow.open(marker.get('map'), marker);
+                });
+            }
+        </script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_JcwZiLASKPD2GXxNq5JZO6dXJ6fkPuk"></script>
+    </body>
+</html>

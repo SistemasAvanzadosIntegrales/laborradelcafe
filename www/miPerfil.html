@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+            @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+            @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+        </style>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="css/bootstrap.css" >
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/menu.css" />
+        <link rel="stylesheet" href="css/font-awesome.css">
+        
+    </head>
+    
+    <body onclick="afuera();">
+        
+        <!-- opacity -->
+        <div class="col-12 float-left modal-background hidden"></div>
+        
+        <!-- Menú -->
+        <header id="menu"></header>
+        
+        <div class="page-wrapper">
+            <div class="row">
+                <!-- Logo Menu -->
+                <div class="col-12 text-left float-left no-padding">
+                    <div class="fixed">
+                        <img src="img/menu.png" id="menus" width="35px">
+                        <a href="verPromocionesLogged.html"><img src="img/back.png" id="back" width="35px"></a>  
+                    </div>
+                </div>
+                
+                <div class="col-12 text-center mt-4">
+                    <img id="usrP" class="img-circle" onclick="takepicture2()" src="img/user.png" width="100%" />
+                </div>
+                
+                <div class="col-12 text-center mt-4">
+                    <img src="img/balls.png" width="35%">
+                    <img class="logo-right" src="img/logo-middle.PNG" width="30%">
+                </div>
+                
+                <div class="col-12 text-center mt-4">
+                    <label id="lblNombre"></label>
+                    <p id="userLocation"></p>
+                </div>
+                
+                <div class="col-12 text-center mt-4">
+                    <label>Cuentas con:</label>
+                </div>
+                
+                <div class="col-8 offset-2 text-center mt-2" id="circle-red">
+                    <div class="circle-red-into">
+                        <div>
+                            <label>Puntos:</label><br/> 
+                            <label id="lblPuntos"></label>  
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 text-center mt-4">
+                    <label>Que podrás canjear en tu sucursal favorita</label>
+                </div>
+                
+                <!--<div class="col-8 offset-2 mt-4">
+                    <a href="#" class="btn btn-primary btn-block">
+                        Pagar con puntos
+                    </a>
+                </div>
+                -->
+                
+                <div class="col-12 text-center mt-4">
+                    <label>Hasta ahora has consumido "<b id="p_cons"></b>" pts. Tus últimas transacciones fueron:</label>
+                </div>
+                
+                <div class="col-12 text-center mt-4">
+                    <table class="table table-striped">
+                        <tbody id="tablaEstadoCuenta">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Saldo ant.</th>
+                                <th>Saldo act.</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!--JS--> 
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script> 
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/localstorage.js"></script>
+        <script type="text/javascript" src="js/comun.js"></script>
+        <script type="text/javascript" src="js/menu.js"></script>
+        <script type="text/javascript" src="js/estadoCuenta.js"></script>
+    </body>
+</html>

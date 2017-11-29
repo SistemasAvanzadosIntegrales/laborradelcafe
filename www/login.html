@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+            @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+            @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+        </style>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="css/bootstrap.css" >
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/font-awesome.css">
+    </head>
+    
+    <body>
+        <div class="page-wrapper">
+            <div class="row">
+                <!-- Logo Menu -->
+                <div class="col-12 text-left float-left no-padding">
+                    <a href="index.html" class="fixed">
+                        <img src="img/back.png" width="35px">  
+                    </a>
+                </div>
+                
+                <!-- Logo principal -->
+                <div class="col-12 text-center m-t-space">
+                    <img src="img/logo.png" width="65%">
+                </div>
+
+                <!-- Inputs -->
+                <div class="col-12 text-center mt-4">
+                    <p class="alert alert-danger" id="alertaLogin" style="display:none !important;"></p>
+                    
+                    <!-- Usuario: 1 -->
+                    <input type="text" class="form-control text-center" id="numero_tarjeta" name="numero_tarjeta" placeholder="Número de tarjeta o E-mail">
+
+                    <!-- Contraseña: 3734d4 -->
+                    <input type="password" class="form-control text-center mt-2" id="contrasena" name="contrasena" placeholder="Contraseña">
+                </div>
+                
+                <!-- Buttons -->
+                <div class="col-8 offset-4 mt-4">
+                    <a href="#" onclick="ingresar();" class="btn btn-primary btn-block">
+                        Iniciar sesión
+                    </a>
+
+                    <a href="recuperarContrasena.html" class="btn btn-primary btn-block">
+                        Recuperar contraseña
+                    </a>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- JS -->
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/localstorage.js"></script>
+        <script type="text/javascript" src="js/comun.js"></script>  
+    </body>
+</html>

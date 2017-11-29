@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+            @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+            @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+        </style>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="css/bootstrap.css" >
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/menu.css" />
+        <link rel="stylesheet" href="css/font-awesome.css">
+        
+    </head>
+    
+    <body onclick="afuera();">
+        
+        <!-- opacity -->
+        <div class="col-12 float-left modal-background hidden"></div>
+        
+        <!-- Menú -->
+        <header id="menu"></header>
+        
+        <div class="page-wrapper">
+            <div class="row">
+                <!-- Logo Menu -->
+                <div class="col-12 text-left float-left no-padding">
+                    <div class="fixed">
+                        <img src="img/menu.png" id="menus" width="35px">
+                        <a href="verPromocionesLogged.html"><img src="img/back.png" id="back" width="35px"></a>  
+                    </div>
+                </div>
+                
+                <!-- Logo principal -->
+                <div class="offset-3 col-6 text-center m-t-space">
+                    <img src="img/logo-middle.png" width="100%">
+                </div>
+                
+                <form>
+                    <!-- Tarjeta -->
+                    <div class="col-12 float-left mt-3">
+                        <label>* Tarjeta:</label>
+                        <input type="text" id="txtTarjeta" disabled name="txtTarjeta" class="form-control required" maxlength="50" /> 
+                    </div>
+                    
+                    <!-- Contraseña -->
+                    <div class="col-12 float-left mt-3">
+                        <label>* Contraseña:</label>
+                        <input type="password" id="txtpass" class="form-control required" maxlength="50" />
+                    </div> 
+                    
+                    <!-- Nombre -->
+                    <div class="col-12 float-left mt-3">
+                        <label>* Nombre:</label>
+                        <input type="text" id="txtNombre" class="form-control required" maxlength="50" />
+                    </div> 
+                    
+                    <!-- Sexo -->
+                    <div class="col-12 float-left mt-3">
+                        <label>* Sexo:</label>
+                        <select id="txtSexo" class="form-control required">
+                            <option value="">Seleccione</option>
+                            <option value="F">Femenino</option>
+                            <option value="M">Masculino</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Cumpleapleaños -->
+                    <div class="col-12 float-left mt-3">
+                        <label>* Cumpleaños:</label>
+                        <input id="txtCumple" class="form-control date required" type=date />
+                    </div>  
+                    
+                    <!-- E-mail -->
+                    <div class="col-12 float-left mt-3">
+                        <label>* E-Mail:</label>
+                        <input type="text" id="txtCorreo" class="form-control required" maxlength="50" />
+                    </div>  
+                    
+                    <!-- Telefono -->
+                    <div class="col-12 float-left mt-3">
+                        <label>Telefono:</label>
+                        <input type="text" id="txtTelefono2" class="form-control" maxlength="50" />
+                    </div>
+                    
+                    <!-- Telefono 2 -->
+                    <div class="col-12 float-left mt-3">
+                        <label>Telefono 2:</label>
+                        <input type="text" id="txtTelefono" class="form-control" maxlength="50" />
+                    </div>
+                    
+                    <!-- Colonia -->
+                    <div class="col-12 float-left mt-3">
+                        <label>Colonia:</label>
+                        <input type="text" id="txtColonia" class="form-control" maxlength="50" />
+                    </div>
+                    
+                    <!-- C.P. -->
+                    <div class="col-12 float-left mt-3">
+                        <label>C.P:</label>
+                        <input type="text" id="txtCp" class="form-control" maxlength="50" />
+                    </div>
+                    
+                    <!-- Estado -->
+                    <div class="col-12 float-left mt-3">
+                        <label>Estado:</label>
+                        <select id="txtEstado" class="form-control" ></select>
+                    </div> 
+                    
+                    <!-- Municipio -->
+                    <div class="col-12 float-left mt-3">
+                        <label>Municipio:</label>
+                        <select id="txtMunicipio" class="form-control"></select>
+                    </div>
+                    
+                    <div class="col-12 float-left text-center mt-4">
+                        <div class="col-2 float-left">
+                            <input id="politicas" type="checkbox" value="" style="margin-top: 4px;">
+                        </div>
+                        
+                        <div class="col-10 float-left">
+                            <label>* Estoy de acuerdo.</label>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="col-12 text-center mt-3 float-left" id="politicas" onclick="politicas();">
+                    Políticas de privacidad
+                </div>
+                
+                <div id="fade" class="overlay" onclick ="document.getElementById('light').style.display='none'; document.getElementById('fade').style.display='none'"></div>
+                <!-- fin base semi-transparente -->
+                
+                <!-- ventana modal -->  
+                <div id="light" class="modal privacity" style="height: 600px; overflow: auto;">
+                    <h2>Políticas de Privacidad</h2>
+                    <p class="text-justify">La Borra del Cafe, con domicilio en Liverpool y Amberes, es responsable de recabar sus datos personales, del uso que se le dé a los mismos y de su protección.
+                        <br><br>
+                        La información personal que proporcionó será utilizada para recibir los beneficios del programa de lealtad de clientes, informarle sobre cambios en los mismos, evaluar la calidad del servicio y para fines publicitarios.
+                        <br><br>
+                        Usted tiene derecho de acceder, rectificar y cancelar sus datos personales, así como de oponerse al tratamiento de los mismos o revocar el consentimiento que para tal fin nos haya otorgado, a través de los procedimientos que hemos implementado. Para conocer dichos procedimientos, los requisitos y plazos, se puede poner en contacto con al e-mail: 
+                        <a href="mailto:laborradelcafe@lealtadprimero.com.mx">laborradelcafe@lealtadprimero.com.mx</a>
+                        ó visitar nuestra página web
+                        <a href="http://www.laborradelcafe.mx">www.laborradelcafe.mx</a>
+                        <br><br>
+                        Asimismo, le informamos que sus datos personales pueden ser transferidos y tratados dentro y fuera del país, por personas distintas a esta empresa. En ese sentido, su información puede ser compartida con La Borra del Cafe, para recibir los beneficios del programa de lealtad de clientes, informarle sobre cambios en los mismos, evaluar la calidad del servicio y para fines publicitarios. Si usted no manifiesta su oposición para que sus datos personales sean transferidos, se entenderá que ha otorgado su consentimiento para ello
+                    </p>
+                    
+                    <div class="col-8 offset-2 mt-4 text-center mb-3 no-padding float-left">
+                        <a href="#" onclick="document.getElementById('light').style.display='none'; document.getElementById('fade').style.display='none'" class="btn btn-primary btn-block">
+                            Aceptar
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-12 float-left mt-3 text-center">
+                    <p class="alert alert-danger" id="alertaRegistro" style="display:none !important; margin: 0;"></p>
+                </div>
+                
+                <div class="col-6 mt-3 float-left">
+                    <a href="miPerfil.html" class="btn btn-primary btn-block">
+                        Cancelar
+                    </a>
+                </div>
+                <div class="col-6 float-left mt-3">
+                    <a href="#" onclick="guardar_datos();" class="btn btn-primary btn-block">
+                        Guardar
+                    </a>
+                </div>
+            </div>
+        </div>
+ 
+        <!--JS-->
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/prefixfree.min.js"></script>
+        <script src="js/localstorage.js"></script>
+        <script src="js/comun.js"></script>
+        <script src="js/menu.js"></script>
+        <script src="js/main.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                
+                estados();
+                municipios();
+                obtenerDatosPersonales();  
+                
+                $('#txtEstado').change(function(){
+                    municipios(); 
+                });
+            });
+            
+            function politicas() {
+                document.getElementById('light').style.display='block'
+                document.getElementById('fade').style.display='block';
+
+                $('html,body').animate({
+                    scrollTop: $('.privacity').css('top')
+                }, 800)
+            }
+            
+        </script>    
+    </body>
+</html>

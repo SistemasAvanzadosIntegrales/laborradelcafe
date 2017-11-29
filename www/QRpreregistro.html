@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+            @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+            @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+        </style>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="css/bootstrap.css" >
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/menu.css" />
+        <link rel="stylesheet" href="css/font-awesome.css">
+    </head>
+    
+    <body onclick="afuera();">
+        <!-- opacity -->
+        <div class="col-12 float-left modal-background hidden"></div>
+        
+        <div class="page-wrapper">
+            <div class="row">
+                
+                <!-- Logo principal -->
+                <div class="offset-3 col-6 text-center m-t-space">
+                    <img src="img/logo-middle.png" width="100%">
+                </div>
+                
+                <div class="col-12 float-left mt-4 text-center">
+                    <h2>¡Operación exitosa!</h2>
+                    
+                    <p class="mt-4">Puedes recoger tu tarjeta de lealtad <label>LA BORRA DEL CAFE</label> presentando el siguiente código en cualquiera de nuestras sucursales</p>
+
+                    <div id="qr"></div>
+
+                    <label id="msg" style="font-size: 12px"></label> 
+
+                    <p class="mt-4">Tambien puede recogerla mencionando el correo electronico que has dado de alta</p>
+                </div>                
+            </div>
+        </div>
+        
+        <!--JS-->
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/prefixfree.min.js"></script>
+        <script type="text/javascript" src="js/localstorage.js"></script>
+        <script type="text/javascript" src="js/comun.js"></script>
+        <script type="text/javascript" src="js/menu.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/qrcode.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#msg').html(localStorage.getItem('codigo_qr'));
+                update_qrcode2('msg'); 
+            });
+        </script>
+    </body>
+</html>

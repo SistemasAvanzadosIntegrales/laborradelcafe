@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+            @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+            @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+        </style>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="css/bootstrap.css" >
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/font-awesome.css">
+    </head>
+    
+    <body>
+        <div class="page-wrapper">
+            <div class="row">
+                <!-- Logo principal -->
+                <div class="offset-3 col-6 text-center m-t-space">
+                    <img src="img/logo.png" width="100%">
+                </div>
+
+                <!-- Banner -->
+                <div class="offset-1 col-10 text-center m-t-space_x2">
+                    <img src="img/bienvenido.png" width="100%">
+                </div>
+
+                <!-- Botones -->
+                <div class="col-8 offset-2 text-center m-t-space_x2">
+                    <a href="login.html" class="btn btn-primary btn-block">
+                        Iniciar sesión
+                    </a>
+                    <!--<a href="verPromociones.html" class="btn btn-primary btn-block">
+                        Promociones
+                    </a>-->
+                    <a href="registro.html" class="btn btn-primary btn-block">
+                        Regístrate
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JS -->
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/localstorage.js"></script>
+        <script type="text/javascript" src="js/comun.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                
+                if( pughpharm.isLogged() )
+                    window.location = "verPromocionesLogged.html"
+            
+            });
+        </script>
+    </body>
+</html>
